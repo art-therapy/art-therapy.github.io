@@ -16,9 +16,9 @@
                 var text = '';
                 while (text.length < 100)
                     text += post.shift();
-                html += '<div class="post-preview"><a href="post.html?'+i+'"><h2 class="post-title">'
-                    + title + '</h2><h3 class="post-subtitle">'
-                    + text + ' ...</h3></a></div>'
+                html += '<div class="post-preview"><a href="post.html?'+i+'"><h4 >'
+                    + title + '</h4><h5 class="post-subtitle">'
+                    + text + ' ...</h5></a></div>'
             });
             target.innerHTML = html + '</div></div></div>';
         }
