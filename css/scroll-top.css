@@ -1,7 +1,7 @@
 #return-to-top {
     position: fixed;
     bottom: 20px;
-    right: 20px;
+    left: 20px;
     background: rgb(0, 0, 0);
     background: rgba(0, 0, 0, 0.7);
     width: 50px;
@@ -23,7 +23,7 @@
     margin: 0;
     position: relative;
     left: 16px;
-    top: 13px;
+    top: 10px;
     font-size: 19px;
     -webkit-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease;
@@ -36,7 +36,7 @@
 }
 #return-to-top:hover i {
     color: #fff;
-    top: 5px;
+    /*top: 5px;*/
 }
 
 body {
