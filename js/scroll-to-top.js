@@ -11,8 +11,8 @@
         if (!btn)
             return;
 
-        btn.style.opacity = visible ? 1 : 0;
         var visible = $(this).scrollTop() >= 100;
+        btn.style.opacity = visible ? 1 : 0;
         btn.style.pointerEvents = visible ? 'all' : 'none';
     }
 
