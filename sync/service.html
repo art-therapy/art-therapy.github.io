@@ -5,6 +5,8 @@
     <title>Title</title>
 </head>
 <body>
+    <script src="../js/tools.js" type="text/javascript"></script>
+
     <script src="https://vk.com/js/api/openapi.js" type="text/javascript"></script>
     <script type="text/javascript">
 
@@ -12,23 +14,34 @@
             apiId: '5043774'
         });
 
-        // VK.Auth.login(loginSuccess);
+        var actual;
+
+        req('../posts/index.json', function (postsIndex) {
+            actual = postsIndex.ids;
+            VK.Auth.login(loginSuccess);
+        });
 
         function preparePostIds(postsListData) {
-            return postsListData.response.items.map(function (post) {
+            return postsListData.response.items.filter(function (post) {
+                return actual.indexOf(post.id) === -1;
+            }).map(function (post) {
                 return post.owner_id + '_' + post.id
-            }).slice(0, 100).join(',');
+            });
         }
 
         function loginSuccess() {
             call('wall.get', function (postsListData) {
-                call('wall.getById', {
-                    posts: preparePostIds(postsListData)
-                }, function (postsContents) {
-                    postsContents.response.forEach(function (item) {
-                        log(item)
-                    })
-                })
+                // preparePostIds(postsListData).forEach(updatePost);
+                updatePost(preparePostIds(postsListData)[1])
+            })
+        }
+
+
+        function updatePost(postId) {
+            call('wall.getById', {
+                posts: [postId]
+            }, function (postsContents) {
+                log(postsContents.response);
             })
         }
 
@@ -53,7 +66,7 @@
             options: {}
         };
 
-        initFS(gitListFiles);
+        // initFS(gitListFiles);
 
         function gitListFiles(fs) {
             git.clone({
