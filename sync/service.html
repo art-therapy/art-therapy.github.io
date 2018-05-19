@@ -2,94 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>vk sync</title>
 </head>
 <body>
     <script src="../js/tools.js" type="text/javascript"></script>
-
+    <script src="htmlify.js" type="text/javascript"></script>
     <script src="https://vk.com/js/api/openapi.js" type="text/javascript"></script>
-    <script type="text/javascript">
-
-        VK.init({
-            apiId: '5043774'
-        });
-
-        var actual;
-
-        req('../posts/index.json', function (postsIndex) {
-            actual = postsIndex.ids;
-            VK.Auth.login(loginSuccess);
-        });
-
-        function preparePostIds(postsListData) {
-            return postsListData.response.items.filter(function (post) {
-                return actual.indexOf(post.id) === -1;
-            }).map(function (post) {
-                return post.owner_id + '_' + post.id
-            });
-        }
-
-        function loginSuccess() {
-            call('wall.get', function (postsListData) {
-                // preparePostIds(postsListData).forEach(updatePost);
-                updatePost(preparePostIds(postsListData)[1])
-            })
-        }
-
-
-        function updatePost(postId) {
-            call('wall.getById', {
-                posts: [postId]
-            }, function (postsContents) {
-                log(postsContents.response);
-            })
-        }
-
-        function call(method, paramsOrCallback, callback) {
-            var params = callback ? paramsOrCallback : {};
-            params.v = '5.74';
-            callback = callback || paramsOrCallback;
-            VK.Api.call(method, params, callback)
-        }
-
-        function log(a) {
-            console.log(a);
-        }
-    </script>
-
     <script src="https://unpkg.com/browserfs"></script>
     <script src="https://unpkg.com/isomorphic-git"></script>
-    <script>
-
-        var fsConfig = {
-            fs: "IndexedDB",
-            options: {}
-        };
-
-        // initFS(gitListFiles);
-
-        function gitListFiles(fs) {
-            git.clone({
-                fs: fs,
-                dir: '/',
-                url: 'https://cors-buster-jfpactjnem.now.sh/github.com/art-therapy/art-therapy.github.io.git',
-                singleBranch: true,
-                depth: 1
-            }).then(function () {
-                log('clone success');
-                fs.readFile('/pages.txt', function(err, contents) {
-                    console.log(contents.toString());
-                });
-            });
-        }
-
-        function initFS(fsLoadCallback) {
-            BrowserFS.configure(fsConfig, function (err) {
-                if (err)
-                    return console.error(err);
-                fsLoadCallback(BrowserFS.BFSRequire("fs"));
-            });
-        }
-    </script>
+    <script src="sync.js"></script>
 </body>
 </html>
