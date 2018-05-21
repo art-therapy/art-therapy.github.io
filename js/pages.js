@@ -6,7 +6,7 @@
     var col = div('col-lg-8 col-md-10 mx-auto', row);
     col.style.minHeight = '500px';
     var posts;
-    var page = (document.location.search - 1) || 0;
+    var page = (document.location.search.substring(1) - 1) || 0;
     var count = 5;
 
     req('posts/index.json', function (postsData) {

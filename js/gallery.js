@@ -1,8 +1,13 @@
 var g = document.querySelector('#gallery');
-var row;
-for (var i = 0; i < 39; i++) {
 
-    if (i % 3 === 0){
+var total = 39;
+var page = 2;
+var count = 6;
+
+var row;
+for (var i = 0; i < total; i++) {
+
+    if (i % 3 === 0) {
         row = document.createElement('div');
         row.className = 'row';
         g.appendChild(row);
