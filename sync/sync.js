@@ -1,20 +1,52 @@
 var fs;
 var actual = [];
 var remain;
-var githubLogin;
-var githubPassword;
+var githubLogin = '';
+var githubPassword = '';
+var wallId = 160197155;
+var administrators = [
+
+];
 
 chain(
     initVk,
     initFS,
+    cleanup,
     gitClone,
-    // gitPull,
     processWallPosts,
     updateIndexFile,
     gitCommit,
     gitPush,
     done
 );
+
+function cleanup(finish) {
+    log('cleanup');
+    deleteFolderRecursive('/');
+    log('cleanup completed');
+    finish();
+}
+
+
+function deleteFolderRecursive(path) {
+    fs.exists(path, function (exists) {
+       if (exists) {
+           fs.readdir(path, function(error, files) {
+               files.forEach(function (file) {
+                   var curPath = path + "/" + file;
+                   fs.lstat(curPath, function (error, stat) {
+                       if (stat.isDirectory()) {
+                           deleteFolderRecursive(curPath)
+                       } else {
+                           fs.unlink(curPath)
+                       }
+                   });
+               })
+           });
+           // fs.rmdir(path);
+       }
+    });
+}
 
 function done() {
     log('done');
@@ -73,7 +105,9 @@ function gitAdd(file, callback) {
 
 function processWallPosts(finish) {
     log('getting posts from wall');
-    vkApiCall('wall.get', function (postsListData) {
+    vkApiCall('wall.get', {
+       owner: wallId
+    }, function (postsListData) {
         var total = postsListData.response.count;
         remain = total;
         log('total posts: ' + total);
@@ -83,6 +117,7 @@ function processWallPosts(finish) {
 
     function processChunk(i) {
         vkApiCall('wall.get', {
+            owner: wallId,
             count: 100,
             offset: i
         }, function (posts) {
@@ -93,7 +128,7 @@ function processWallPosts(finish) {
     function updatePost(post) {
         actual.push(post.id);
         var fileName = 'posts/' + post.id + '.json';
-        fs.writeFile(fileName, post.text, 'utf8', function (err) {
+        fs.writeFile(fileName, JSON.stringify(post), 'utf8', function (err) {
             if (err) {
                 log(err);
                 fileWritten();
@@ -148,24 +183,6 @@ function gitClone(finish) {
     }
 }
 
-function gitPull(finish) {
-
-    log('pulling remote changes');
-
-
-    git.pull({
-        fs: fs,
-        dir: '/',
-        ref: 'master',
-        singleBranch: true
-    }).then(success);
-
-    function success() {
-        log('pull success');
-        finish();
-    }
-}
-
 function initVk(finish) {
     VK.init({apiId: '5043774'});
     log('vk login');
@@ -188,10 +205,8 @@ function initFS(finish) {
     });
 }
 
-function vkApiCall(method, paramsOrCallback, callback) {
-    var params = callback ? paramsOrCallback : {};
+function vkApiCall(method, params, callback) {
     params.v = '5.74';
-    callback = callback || paramsOrCallback;
     VK.Api.call(method, params, callback)
 }
 
@@ -202,7 +217,7 @@ function chain() {
     run();
 
     function run() {
-        queue.shift()(run);
+        queue.length && queue.shift()(run);
     }
 }
 
