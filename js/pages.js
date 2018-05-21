@@ -4,9 +4,9 @@
     var container = div('container', target);
     var row = div('row', container);
     var col = div('col-lg-8 col-md-10 mx-auto', row);
-
+    col.style.minHeight = '500px';
     var posts;
-    var page = 0;
+    var page = (document.location.search - 1) || 0;
     var count = 5;
 
     req('posts/index.json', function (postsData) {
@@ -32,6 +32,7 @@
         div('pager-text', buttons).innerHTML = (page*count+1) + ' - ' + (page*count+count) + ' / ' + posts.length;
         div('fa fa-2x fa-angle-right', buttons).onclick = goToPage.bind(null, 1);
         div('fa fa-2x fa-angle-double-right', buttons).onclick = goToPage.bind(null, posts.length);
+        window.history.replaceState('', '', document.location.pathname + '?' + (page + 1));
     }
 
     function goToPage(dir) {

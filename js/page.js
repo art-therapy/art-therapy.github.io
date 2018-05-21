@@ -21,7 +21,7 @@
                 '<article><div class="container"><div class="row">' +
                 '<div class="col-lg-8 col-md-10 mx-auto">' +
                 '<h2 class="section-heading"></h2>' +
-                '<p>' + post+ '</p>' +
+                '<p>' + post + '</p>' +
                 '</div></div></div></article>';
 
             target.innerHTML = html;
