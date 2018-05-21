@@ -12,7 +12,7 @@
 
             var post = JSON.parse(req.responseText);
 
-            html += '<header class="masthead" style="background-image: url(\'img/post-bg.jpg\')">' +
+            html += '<header class="masthead" style="background-image: url(\'img/post-bg-compressed.jpg\')">' +
                 '<div class="overlay"></div><div class="container"><div class="row">' +
                 '<div class="col-lg-8 col-md-10 mx-auto"><div class="post-heading">' +
                 '<h2>' + post.title + '</h2>' +
