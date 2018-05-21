@@ -1,5 +1,6 @@
 window.hr = elem('hr');
 window.div = elem('div');
+window.span = elem('span');
 
 function elem(type) {
     return function elem(className, parent) {
@@ -15,7 +16,11 @@ function req(url, callback) {
     r.open('get', url, true);
     r.onreadystatechange = function () {
         if (r.readyState === 4 && r.status === 200) {
-            callback(JSON.parse(r.responseText));
+            try {
+                callback(JSON.parse(r.responseText));
+            } catch (e) {
+                callback(r.responseText);
+            }
         }
     };
     r.send();
