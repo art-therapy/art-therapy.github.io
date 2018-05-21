@@ -6,19 +6,20 @@ chain(
     initVk,
     initFS,
     gitClone,
+    // gitPull,
     processWallPosts,
     updateIndexFile,
-    gitAdd,
     gitCommit,
     gitPush,
     done
 );
 
 function done() {
-    log('done')
+    log('done');
 }
 
 function gitPush(finish) {
+    log('push');
     git.push({
         fs: fs,
         dir: '/',
@@ -26,10 +27,18 @@ function gitPush(finish) {
         ref: 'master',
         authUsername: 'strangerintheq',
         authPassword: 'KlopKlop1'
-    }).then(finish)
+    }).then(function () {
+        log('pushed');
+        finish();
+    }).catch(function (reason) {
+        log('error');
+        log(reason);
+        finish();
+    })
 }
 
 function gitCommit(finish) {
+    log('commit');
     git.commit({
         fs: fs,
         dir: '/',
@@ -38,7 +47,14 @@ function gitCommit(finish) {
             email: 'mrtest@example.com'
         },
         message: 'vk wall sync'
-    }).then(finish);
+    }).then(function () {
+        log('commited');
+        finish();
+    }).catch(function (reason) {
+        log('error');
+        log(reason);
+        finish();
+    });
 }
 
 function gitAdd(file, callback) {
@@ -46,7 +62,11 @@ function gitAdd(file, callback) {
         fs: fs,
         dir: '/',
         filepath: file
-    }).then(callback);
+    }).then(callback).catch(function (reason) {
+        log('error');
+        log(reason);
+        callback();
+    });
 }
 
 function processWallPosts(finish) {
@@ -70,9 +90,14 @@ function processWallPosts(finish) {
 
     function updatePost(post) {
         actual.push(post.id);
-        var file = '/posts/' + post.id + '.json';
-        fs.writeFile(file, post.text, 'utf8', function () {
-            gitAdd(file, fileWritten);
+        var fileName = 'posts/' + post.id + '.json';
+        fs.writeFile(fileName, post.text, 'utf8', function (err) {
+            if (err) {
+                log(err);
+                fileWritten();
+            }
+
+            gitAdd(fileName, fileWritten);
         });
     }
 
@@ -89,9 +114,17 @@ function processWallPosts(finish) {
 }
 
 function updateIndexFile(finish) {
+    log('update index file');
     var file = 'posts/index.json';
-    fs.writeFile(file, JSON.stringify(actual), 'utf8', function () {
-        gitAdd(file, finish);
+    fs.writeFile('/' + file, JSON.stringify(actual), 'utf8', function (err) {
+        if (err) {
+            log('update index file error');
+            log(err);
+            finish();
+        } else {
+            log('update index file success');
+            gitAdd(file, finish);
+        }
     });
 }
 
@@ -113,8 +146,26 @@ function gitClone(finish) {
     }
 }
 
+function gitPull(finish) {
+
+    log('pulling remote changes');
+
+
+    git.pull({
+        fs: fs,
+        dir: '/',
+        ref: 'master',
+        singleBranch: true
+    }).then(success);
+
+    function success() {
+        log('pull success');
+        finish();
+    }
+}
+
 function initVk(finish) {
-    VK.init({ apiId: '5043774' });
+    VK.init({apiId: '5043774'});
     log('vk login');
     VK.Auth.login(function () {
         log('vk login success');
