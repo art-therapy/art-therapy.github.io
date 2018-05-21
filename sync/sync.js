@@ -1,6 +1,8 @@
 var fs;
 var actual = [];
 var remain;
+var githubLogin;
+var githubPassword;
 
 chain(
     initVk,
@@ -25,8 +27,8 @@ function gitPush(finish) {
         dir: '/',
         remote: 'origin',
         ref: 'master',
-        authUsername: 'strangerintheq',
-        authPassword: 'KlopKlop1'
+        authUsername: githubLogin,
+        authPassword: githubPassword
     }).then(function () {
         log('pushed');
         finish();
