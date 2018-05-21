@@ -1,6 +1,0 @@
-http://mercury.sexy/hg_sdf/
-
-Отличная штука, если вы понимаете о чем я =)
-
-Why use this? 
-The point of this lib is that everything is structured according to patterns that we ended up using when building geometry. It makes it more easy to write code that is reusable and that somebody else can actually understand. Especially code on Shadertoy (which seems to be what everybody else is looking at for "inspiration") tends to be really ugly. So we were forced to do something about the situation and release this lib ;)

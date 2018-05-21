@@ -1,3 +1,0 @@
-https://bitbucket.org/strangerintheq/guice-config
-
-Guice-config is a small library, extends Google Guice and provides the easier injecting of parameters from configuration file to your application.
