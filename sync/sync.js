@@ -1,27 +1,29 @@
-var administrators = [
-    58440845, //
+var wallId = 160197155;
 
+var administrators = [
+    -wallId,
+    15772341
 ];
 
 var fs;
 var actual;
 var remain;
-var wallId;
+
 var githubLogin;
 var githubPassword;
 
-restore('wall');
+// restore('wall');
 restore('githubLogin');
 restore('githubPassword');
 
 function sync() {
-
+    document.querySelector('#log').innerHTML = '';
     actual = [];
-    wallId = document.querySelector('#wall').value;
+    // wallId = document.querySelector('#wall').value;
     githubLogin = document.querySelector('#githubLogin').value;
     githubPassword = document.querySelector('#githubPassword').value;
 
-    remember('wall', wallId);
+    // remember('wall', wallId);
     remember('githubLogin', githubLogin);
     remember('githubPassword', githubPassword);
 
@@ -29,12 +31,12 @@ function sync() {
         initVk,
         initFS,
         cleanup,
-        gitClone,
-        processWallPosts,
-        updateIndexFile,
-        gitCommit,
-        gitPush,
-        done
+        // gitClone,
+        processWallPosts
+        // updateIndexFile,
+        // gitCommit,
+        // gitPush,
+        // done
     );
 }
 
@@ -132,7 +134,7 @@ function gitAdd(file, callback) {
 function processWallPosts(finish) {
     log('getting posts from wall');
     vkApiCall('wall.get', {
-       owner: wallId
+        owner_id: -wallId
     }, function (postsListData) {
         var total = postsListData.response.count;
         remain = total;
@@ -143,7 +145,7 @@ function processWallPosts(finish) {
 
     function processChunk(i) {
         vkApiCall('wall.get', {
-            owner: -wallId,
+            owner_id: -wallId,
             count: 100,
             offset: i
         }, function (posts) {
@@ -217,10 +219,10 @@ function gitClone(finish) {
 function initVk(finish) {
     VK.init({apiId: '5043774'});
     log('vk login');
-    // VK.Auth.login(function () {
-    //     log('vk login success');
+    VK.Auth.login(function () {
+        log('vk login success');
         finish();
-    // });
+    });
 }
 
 function initFS(finish) {

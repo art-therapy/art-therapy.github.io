@@ -32,7 +32,9 @@
         #log {
             position: absolute;
             top: 230px;
-            height: calc(100% - 300px);
+            height: calc(100% - 250px);
+            width: 100%;
+            overflow: auto;
         }
     </style>
 </head>
@@ -44,9 +46,9 @@
     <br>
     <label for="githubPassword">GitHub password</label>
     <input id="githubPassword"/>
-    <br>
-    <label for="wall">VK wall ID</label>
-    <input id="wall"/>
+    <!--<br>-->
+    <!--<label for="wall">VK wall ID</label>-->
+    <!--<input id="wall"/>-->
     <br>
     <br>
     <button class="btn" onclick="sync()">Sync</button>
