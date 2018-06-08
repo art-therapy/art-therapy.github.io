@@ -1,24 +1,54 @@
-var fs;
-var actual = [];
-var remain;
-var githubLogin = '';
-var githubPassword = '';
-var wallId = 160197155;
 var administrators = [
-
+    58440845, //
 ];
 
-chain(
-    initVk,
-    initFS,
-    cleanup,
-    gitClone,
-    processWallPosts,
-    updateIndexFile,
-    gitCommit,
-    gitPush,
-    done
-);
+var fs;
+var actual;
+var remain;
+var wallId;
+var githubLogin;
+var githubPassword;
+
+restore('wall');
+restore('githubLogin');
+restore('githubPassword');
+
+function sync() {
+
+    actual = [];
+    wallId = document.querySelector('#wall').value;
+    githubLogin = document.querySelector('#githubLogin').value;
+    githubPassword = document.querySelector('#githubPassword').value;
+
+    remember('wall', wallId);
+    remember('githubLogin', githubLogin);
+    remember('githubPassword', githubPassword);
+
+    chain(
+        initVk,
+        initFS,
+        cleanup,
+        gitClone,
+        processWallPosts,
+        updateIndexFile,
+        gitCommit,
+        gitPush,
+        done
+    );
+}
+
+
+function remember(type, value) {
+    localStorage.setItem(
+        Base64.encode(type),
+        Base64.encode(value)
+    );
+}
+
+function restore(type) {
+    var restored = localStorage.getItem(Base64.encode(type));
+    document.querySelector('#' + type).value = restored ? Base64.decode(restored) : '';
+}
 
 function cleanup(finish) {
     log('cleanup');
@@ -186,13 +216,14 @@ function gitClone(finish) {
 function initVk(finish) {
     VK.init({apiId: '5043774'});
     log('vk login');
-    VK.Auth.login(function () {
-        log('vk login success');
+    // VK.Auth.login(function () {
+    //     log('vk login success');
         finish();
-    });
+    // });
 }
 
 function initFS(finish) {
+    log('filesystem initialize');
     BrowserFS.configure({
         fs: "IndexedDB",
         options: {}
@@ -233,9 +264,10 @@ function asyncLoop(func, from, to, step, timeout) {
 }
 
 function log(a) {
-    document.body.appendChild(htmlify(a));
+    document.querySelector('#log').appendChild(htmlify(a));
 }
 
 function removeLastLogRecord() {
-    document.body.removeChild(document.body.lastChild);
+    var element = document.querySelector('#log');
+    element.removeChild(element.lastChild);
 }
