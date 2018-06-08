@@ -25,3 +25,14 @@ function req(url, callback) {
     };
     r.send();
 }
+
+function formatDate(date) {
+    var d = new Date(date * 1000)
+        .toISOString()
+        .split("T")
+        .join(' ')
+        .split('.')[0]
+        .split(':');
+    d.pop();
+    return d.join(':');
+}

@@ -1,1 +1,48 @@
-{"id":755,"from_id":58440845,"owner_id":58440845,"date":1526878398,"post_type":"post","text":"https://en.wikipedia.org/wiki/Mark_Morgan_(composer)","can_edit":1,"can_delete":1,"can_pin":1,"attachments":[{"type":"audio","audio":{"id":456241896,"owner_id":2000182961,"artist":"Mark Morgan","title":"VA","duration":25,"date":1526878398,"url":"https://vk.com/mp3/audio_api_unavailable.mp3","genre_id":3,"is_hq":true}}],"post_source":{"type":"vk"},"comments":{"count":0,"groups_can_post":true,"can_post":1},"likes":{"count":0,"user_likes":0,"can_like":1,"can_publish":0},"reposts":{"count":0,"user_reposted":0},"views":{"count":44}}
+{
+  "id": 755,
+  "from_id": 58440845,
+  "owner_id": 58440845,
+  "date": 1526878398,
+  "post_type": "post",
+  "text": "https://en.wikipedia.org/wiki/Mark_Morgan_(composer)",
+  "can_edit": 1,
+  "can_delete": 1,
+  "can_pin": 1,
+  "attachments": [
+    {
+      "type": "audio",
+      "audio": {
+        "id": 456241896,
+        "owner_id": 2000182961,
+        "artist": "Mark Morgan",
+        "title": "VA",
+        "duration": 25,
+        "date": 1526878398,
+        "url": "https://vk.com/mp3/audio_api_unavailable.mp3",
+        "genre_id": 3,
+        "is_hq": true
+      }
+    }
+  ],
+  "post_source": {
+    "type": "vk"
+  },
+  "comments": {
+    "count": 0,
+    "groups_can_post": true,
+    "can_post": 1
+  },
+  "likes": {
+    "count": 0,
+    "user_likes": 0,
+    "can_like": 1,
+    "can_publish": 0
+  },
+  "reposts": {
+    "count": 0,
+    "user_reposted": 0
+  },
+  "views": {
+    "count": 44
+  }
+}

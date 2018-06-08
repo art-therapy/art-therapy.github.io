@@ -14,16 +14,42 @@
         renderPage();
     });
 
+    function title(text) {
+        return '<span style="font-size:15px; font-family: \'Open Sans\',\'Helvetica Neue\',Helvetica,Arial,sans-serif;">' + text + '</h5><br>';
+    }
+
     function renderPage() {
         col.innerHTML = '';
         var p = posts.slice(page*count, page*count+count);
-        p.forEach(function (id) {
+        p.forEach(function (id, i) {
             col.innerHTML && hr(col);
             var postBody = div('post-preview', col);
             req('posts/' + id + '.json', function (postData) {
-                postBody.innerHTML = '<div class="post-preview"><a href="post.html?'+id+'"><h4>id: '
-                    + id + '</h4><h5 class="post-subtitle">'
-                    + postData.substring(0, 100) + ' ...</h5></a></div>'
+
+                if (postData.copy_history)
+                    postData = postData.copy_history[0];
+
+                var s = postData.text.substring(0, 100);
+                s && (s += ' ...');
+
+                postBody.innerHTML = '<div class="post-preview"><a href="post.html?' + id + '"><h4>'
+                    + formatDate(postData.date) + '</h4><h5 class="post-subtitle">' + s + '</h5>';
+
+                postData.attachments && postData.attachments.forEach(function (attachment) {
+                    if (attachment.type === 'photo') {
+                        postBody.innerHTML += '<img src="' +attachment.photo.photo_130 +'"/>';
+                    }
+                    if (attachment.type === 'video') {
+                        // postBody.innerHTML += title(attachment.video.title);
+                        postBody.innerHTML += '<img src="' + attachment.video.photo_130 +'"/>';
+                    }
+                    if (attachment.type === 'doc') {
+                        // postBody.innerHTML += attachment.doc.title + '<br>';
+                        postBody.innerHTML += '<img src="' +attachment.doc.preview.photo.sizes.shift().src  +'"/>';
+                    }
+                });
+                postBody.innerHTML += '</a></div>';
+                i !== p.length-1 && (postBody.innerHTML += '<hr>');
             });
         });
         var buttons = div('navigation-buttons', col);

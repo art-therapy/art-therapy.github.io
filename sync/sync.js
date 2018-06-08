@@ -37,12 +37,8 @@ function sync() {
     );
 }
 
-
 function remember(type, value) {
-    localStorage.setItem(
-        Base64.encode(type),
-        Base64.encode(value)
-    );
+    localStorage.setItem(Base64.encode(type), Base64.encode(value));
 }
 
 function restore(type) {
@@ -56,7 +52,6 @@ function cleanup(finish) {
     log('cleanup completed');
     finish();
 }
-
 
 function deleteFolderRecursive(path) {
     fs.exists(path, function (exists) {
@@ -151,19 +146,24 @@ function processWallPosts(finish) {
             count: 100,
             offset: i
         }, function (posts) {
-            posts.response.items.forEach(updatePost)
+            posts.response.items.forEach(updatePost);
         });
     }
 
     function updatePost(post) {
         actual.push(post.id);
+        if (administrators.indexOf(post.from_id) === -1) {
+            remain -= 1;
+            log('skipped ' + formatDate(post.date) + ' because owner is ' + post.from_id);
+            return;
+        }
+
         var fileName = 'posts/' + post.id + '.json';
         fs.writeFile(fileName, JSON.stringify(post), 'utf8', function (err) {
             if (err) {
                 log(err);
                 fileWritten();
             }
-
             gitAdd(fileName, fileWritten);
         });
     }

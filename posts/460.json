@@ -1,1 +1,104 @@
-{"id":460,"from_id":58440845,"owner_id":58440845,"date":1398409828,"post_type":"post","text":"","copy_history":[{"id":4627,"owner_id":435382,"from_id":435382,"date":1398351225,"post_type":"post","text":"С лучшим другом","attachments":[{"type":"photo","photo":{"id":327553581,"album_id":-7,"owner_id":435382,"photo_75":"https://pp.userapi.com/c605527/v605527382/8e9e/LWfVJbc8ESE.jpg","photo_130":"https://pp.userapi.com/c605527/v605527382/8e9f/7hNV_ftLMOo.jpg","photo_604":"https://pp.userapi.com/c605527/v605527382/8ea0/UCKX1PBEFm0.jpg","photo_807":"https://pp.userapi.com/c605527/v605527382/8ea1/wYMaGhob5w0.jpg","photo_1280":"https://pp.userapi.com/c605527/v605527382/8ea2/7glffBADUBw.jpg","width":960,"height":720,"text":"","date":1398351204,"lat":59.95035,"long":30.36668,"access_key":"14aae20f3e91652a43"}},{"type":"photo","photo":{"id":327553592,"album_id":-7,"owner_id":435382,"photo_75":"https://pp.userapi.com/c605527/v605527382/8ea7/M5u5Fg4dz74.jpg","photo_130":"https://pp.userapi.com/c605527/v605527382/8ea8/Oc7Lew6YHeI.jpg","photo_604":"https://pp.userapi.com/c605527/v605527382/8ea9/EKq2Iw6_kvI.jpg","photo_807":"https://pp.userapi.com/c605527/v605527382/8eaa/WVaHTaD8cCM.jpg","photo_1280":"https://pp.userapi.com/c605527/v605527382/8eab/3djn7d9Pzmk.jpg","width":960,"height":720,"text":"","date":1398351207,"lat":59.95035,"long":30.36668,"access_key":"badda088f9e90438e5"}},{"type":"photo","photo":{"id":327553610,"album_id":-7,"owner_id":435382,"photo_75":"https://pp.userapi.com/c605527/v605527382/8eb0/6RrGP7JNpHM.jpg","photo_130":"https://pp.userapi.com/c605527/v605527382/8eb1/CdTrvbJbZjU.jpg","photo_604":"https://pp.userapi.com/c605527/v605527382/8eb2/dbG-SJEVHc8.jpg","photo_807":"https://pp.userapi.com/c605527/v605527382/8eb3/frYCoFKUIf0.jpg","photo_1280":"https://pp.userapi.com/c605527/v605527382/8eb4/lG3HdiPO0XM.jpg","width":960,"height":720,"text":"","date":1398351221,"lat":59.95035,"long":30.36668,"access_key":"642b6ddcfcaff7d226"}}],"post_source":{"type":"api","platform":"iphone"}}],"can_delete":1,"can_pin":1,"post_source":{"type":"vk"},"comments":{"count":0,"groups_can_post":true,"can_post":1},"likes":{"count":0,"user_likes":0,"can_like":1,"can_publish":0},"reposts":{"count":0,"user_reposted":0}}
+{
+  "id": 460,
+  "from_id": 58440845,
+  "owner_id": 58440845,
+  "date": 1398409828,
+  "post_type": "post",
+  "text": "",
+  "copy_history": [
+    {
+      "id": 4627,
+      "owner_id": 435382,
+      "from_id": 435382,
+      "date": 1398351225,
+      "post_type": "post",
+      "text": "С лучшим другом",
+      "attachments": [
+        {
+          "type": "photo",
+          "photo": {
+            "id": 327553581,
+            "album_id": -7,
+            "owner_id": 435382,
+            "photo_75": "https://pp.userapi.com/c605527/v605527382/8e9e/LWfVJbc8ESE.jpg",
+            "photo_130": "https://pp.userapi.com/c605527/v605527382/8e9f/7hNV_ftLMOo.jpg",
+            "photo_604": "https://pp.userapi.com/c605527/v605527382/8ea0/UCKX1PBEFm0.jpg",
+            "photo_807": "https://pp.userapi.com/c605527/v605527382/8ea1/wYMaGhob5w0.jpg",
+            "photo_1280": "https://pp.userapi.com/c605527/v605527382/8ea2/7glffBADUBw.jpg",
+            "width": 960,
+            "height": 720,
+            "text": "",
+            "date": 1398351204,
+            "lat": 59.95035,
+            "long": 30.36668,
+            "access_key": "14aae20f3e91652a43"
+          }
+        },
+        {
+          "type": "photo",
+          "photo": {
+            "id": 327553592,
+            "album_id": -7,
+            "owner_id": 435382,
+            "photo_75": "https://pp.userapi.com/c605527/v605527382/8ea7/M5u5Fg4dz74.jpg",
+            "photo_130": "https://pp.userapi.com/c605527/v605527382/8ea8/Oc7Lew6YHeI.jpg",
+            "photo_604": "https://pp.userapi.com/c605527/v605527382/8ea9/EKq2Iw6_kvI.jpg",
+            "photo_807": "https://pp.userapi.com/c605527/v605527382/8eaa/WVaHTaD8cCM.jpg",
+            "photo_1280": "https://pp.userapi.com/c605527/v605527382/8eab/3djn7d9Pzmk.jpg",
+            "width": 960,
+            "height": 720,
+            "text": "",
+            "date": 1398351207,
+            "lat": 59.95035,
+            "long": 30.36668,
+            "access_key": "badda088f9e90438e5"
+          }
+        },
+        {
+          "type": "photo",
+          "photo": {
+            "id": 327553610,
+            "album_id": -7,
+            "owner_id": 435382,
+            "photo_75": "https://pp.userapi.com/c605527/v605527382/8eb0/6RrGP7JNpHM.jpg",
+            "photo_130": "https://pp.userapi.com/c605527/v605527382/8eb1/CdTrvbJbZjU.jpg",
+            "photo_604": "https://pp.userapi.com/c605527/v605527382/8eb2/dbG-SJEVHc8.jpg",
+            "photo_807": "https://pp.userapi.com/c605527/v605527382/8eb3/frYCoFKUIf0.jpg",
+            "photo_1280": "https://pp.userapi.com/c605527/v605527382/8eb4/lG3HdiPO0XM.jpg",
+            "width": 960,
+            "height": 720,
+            "text": "",
+            "date": 1398351221,
+            "lat": 59.95035,
+            "long": 30.36668,
+            "access_key": "642b6ddcfcaff7d226"
+          }
+        }
+      ],
+      "post_source": {
+        "type": "api",
+        "platform": "iphone"
+      }
+    }
+  ],
+  "can_delete": 1,
+  "can_pin": 1,
+  "post_source": {
+    "type": "vk"
+  },
+  "comments": {
+    "count": 0,
+    "groups_can_post": true,
+    "can_post": 1
+  },
+  "likes": {
+    "count": 0,
+    "user_likes": 0,
+    "can_like": 1,
+    "can_publish": 0
+  },
+  "reposts": {
+    "count": 0,
+    "user_reposted": 0
+  }
+}
