@@ -31,12 +31,12 @@ function sync() {
         initVk,
         initFS,
         cleanup,
-        // gitClone,
-        processWallPosts
-        // updateIndexFile,
-        // gitCommit,
-        // gitPush,
-        // done
+        gitClone,
+        processWallPosts,
+        updateIndexFile,
+        gitCommit,
+        gitPush,
+        done
     );
 }
 
