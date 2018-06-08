@@ -1,5 +1,6 @@
 var administrators = [
     58440845, //
+
 ];
 
 var fs;
@@ -142,7 +143,7 @@ function processWallPosts(finish) {
 
     function processChunk(i) {
         vkApiCall('wall.get', {
-            owner: wallId,
+            owner: -wallId,
             count: 100,
             offset: i
         }, function (posts) {
