@@ -6,7 +6,8 @@
     var col = div('col-lg-8 col-md-10 mx-auto', row);
     col.style.minHeight = '500px';
     var posts;
-    var page = (document.location.search.substring(1) - 1) || 0;
+    var page = (document.location.search.substring(1) - 1);
+    page = page >= 0 ? page : 0;
     var count = 5;
 
     req('posts/index.json', function (postsData) {
@@ -29,11 +30,11 @@
                 if (postData.copy_history)
                     postData = postData.copy_history[0];
 
-                var s = postData.text.substring(0, 100);
+                var s = postData.text.substring(0, 100).split('\n').join('<br>');
                 s && (s += ' ...');
 
-                postBody.innerHTML = '<div class="post-preview"><a href="post.html?' + id + '"><h4>'
-                    + formatDate(postData.date) + '</h4><h5 class="post-subtitle">' + s + '</h5>';
+                postBody.innerHTML = '<div class="post-preview"><a href="post.html?' + id + '"><h5>'
+                    + formatDate(postData.date) + '</h5><h6 class="post-subtitle">' + s + '</h6>';
 
                 postData.attachments && postData.attachments.forEach(function (attachment) {
                     if (attachment.type === 'photo') {
@@ -66,7 +67,7 @@
         var max = posts.length / count;
 
         if (page <= -1)
-            page = 0;
+            page = 1;
 
         if (page >= max)
             page = max - 1;
